@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html ng-app="datosContrato">
+
+<head>
+
+    <title>Universidad Distrital</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/estilo.css" rel="stylesheet">
+    <script type="text/javascript" src="js/angular.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="brand">Universidad Distrital</div>
+    <div class="address-bar">Contrataci&oacute;n De Docentes Por Vinculaci&oacute;n Especial</div>
+
+    <nav class="navbar navbar-default" role="navigation">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a>Docentes</a>
+                  <ul>
+                    <li><a href="adddocente.html">Agregar registo</a></li>
+      							<li><a href="docentes.html">Ver registros</a></li>
+                  </ul>
+                </li>
+                <li><a>Contratos</a>
+                  <ul>
+                    <li><a href="addcontrato.html">Agregar registo</a></li>
+      							<li><a href="contratos.html">Ver registros</a></li>
+                  </ul>
+                </li>
+                <li><a href="necesidad.html">Necesidad</a></li>
+            </ul>
+    </nav>
+
+    <div ng-controller="controladorContratos">
+    <div class="container" ng-repeat="contrato in infor.contratos">
+        <div class="row">
+            <div class="box">
+                    <hr>
+                        <h2 class="intro-text text-center">Contrato <strong>{{contrato.numero}}</strong></h2>
+                    <hr>
+                    <form role="form">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label>N&uacute;mero</label>
+                                <input type="text" class="form-control" readonly="readonly" value='{{contrato.numero}}'>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Fecha Registro</label>
+                                <input type="text" class="form-control" readonly="readonly" value='{{contrato.fecharegistro}}'>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Salario</label>
+                                <input type="text" class="form-control" readonly="readonly" value='{{contrato.salario}}'>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Tipo</label>
+                                <input type="text" class="form-control" readonly="readonly" value='{{contrato.tipocontrato}}'>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Esado</label>
+                                <input type="text" class="form-control" readonly="readonly" value='{{contrato.estado}}'>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label></label>
+                                <input type="submit" class="form-control" value="Ver Resoluci&oacute;n">
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+
+                var misDatos = angular.module('datosContrato', []);
+
+                misDatos.controller('controladorContratos',function($scope,$http){
+
+                                $scope.importar = function(){
+
+                                        $http.get('data/datos.json').success(function(datos){
+
+                                                $scope.infor = datos;
+
+                                        });
+                                }
+
+                                $scope.importar();
+
+                });
+
+                </script>
+
+</body>
+
+</html>

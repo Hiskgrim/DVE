@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html ng-app="datosDocente">
+
+<head>
+
+    <title>Universidad Distrital</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/estilo.css" rel="stylesheet">
+    <script type="text/javascript" src="js/angular.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="brand">Universidad Distrital</div>
+    <div class="address-bar">Contrataci&oacute;n De Docentes Por Vinculaci&oacute;n Especial</div>
+
+    <nav class="navbar navbar-default" role="navigation">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a>Docentes</a>
+                  <ul>
+                    <li><a href="adddocente.html">Agregar registo</a></li>
+      							<li><a href="docentes.html">Ver registros</a></li>
+                  </ul>
+                </li>
+                <li><a>Contratos</a>
+                  <ul>
+                    <li><a href="addcontrato.html">Agregar registo</a></li>
+      							<li><a href="contratos.html">Ver registros</a></li>
+                  </ul>
+                </li>
+                <li><a href="necesidad.html">Necesidad</a></li>
+            </ul>
+    </nav>
+
+    <div ng-controller="controladorDocentes">
+    <div class="container">
+        <div class="row">
+            <div class="box">
+                    <hr>
+                        <h2 class="intro-text text-center">Informaci&oacute;n <strong>Docente</strong></h2>
+                    <hr>
+                    <form role="form">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label>Primer Nombre</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Segundo Nombre</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Primer Apellido</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Segundo Apellido</label>
+                                <input type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Fecha de Nacimiento</label>
+                                <input type="date" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Sexo</label>
+                                <select class="form-control">
+                                  <option>Masculino</option>
+                                  <option>Femenino</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label></label>
+                                <input type="submit" class="form-control" value="Guardar">
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script type="text/javascript">
+
+                var misDatos = angular.module('datosDocente', []);
+
+                misDatos.controller('controladorDocentes',function($scope,$http){
+
+                                $scope.importar = function(){
+
+                                        $http.get('data/datos.json').success(function(datos){
+
+                                                $scope.infor = datos;
+
+                                        });
+                                }
+
+                                $scope.importar();
+
+                });
+
+                </script>
+
+</body>
+
+</html>

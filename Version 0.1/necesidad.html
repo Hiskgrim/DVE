@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Universidad Distrital</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/estilo.css" rel="stylesheet">
+    <script type="text/javascript" src="js/jspdf/js/jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/jspdf/js/jquery/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="js/jspdf/jspdf.js"></script>
+    <script type="text/javascript" src="js/jspdf/jspdf.plugin.addimage.js"></script>
+    <script type="text/javascript" src="js/jspdf/jspdf.plugin.standard_fonts_metrics.js"></script>
+    <script type="text/javascript" src="js/jspdf/jspdf.plugin.split_text_to_size.js"></script>
+    <script type="text/javascript" src="js/jspdf/jspdf.plugin.from_html.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="brand">Universidad Distrital</div>
+    <div class="address-bar">Contrataci&oacute;n De Docentes Por Vinculaci&oacute;n Especial</div>
+
+    <nav class="navbar navbar-default" role="navigation">
+            <ul class="nav navbar-nav">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a>Docentes</a>
+                  <ul>
+                    <li><a href="adddocente.html">Agregar registo</a></li>
+      							<li><a href="docentes.html">Ver registros</a></li>
+                  </ul>
+                </li>
+                <li><a>Contratos</a>
+                  <ul>
+                    <li><a href="addcontrato.html">Agregar registo</a></li>
+      							<li><a href="contratos.html">Ver registros</a></li>
+                  </ul>
+                </li>
+                <li><a href="necesidad.html">Necesidad</a></li>
+            </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="box">
+                    <hr>
+                        <h2 class="intro-text text-center">Nueva <strong>Solicitud</strong></h2>
+                    <hr>
+                    <form role="form">
+                        <div class="row">
+                            <div class="form-group col-lg-4">
+                                <label>Usuario</label>
+                                <input id="user" type="text" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Dependencia</label>
+                                <select class="form-control">
+                                  <option>Contrataci&oacute;n</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Centro de Costos</label>
+                                <select class="form-control">
+                                  <option>Contrataci&oacute;n</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Dependencia</label>
+                                <select class="form-control">
+                                  <option>Ordenadores de pago</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>N&uacute;mero de docentes</label>
+                                <input id="number" type="number" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label>Fecha l&iacute;mite</label>
+                                <input id="date" type="date" class="form-control">
+                            </div>
+                            <div class="form-group col-lg-4">
+                                <label></label>
+                                <buttom class="form-control" id="enviar">Generar Carta</buttom>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" id="carta">
+
+    </div>
+
+    <script type="text/javascript">
+      $("#enviar").click(function(){
+        var user=$("#user").val();
+        var number=$('#number').val();
+        var date=$('#date').val();
+        var f = new Date();
+        if(user!="" && number!="" && date!=""){
+          var texto = "<div class='row'> <div class='box' id='pdf'><hr><h2 class='intro-text text-center'>Carta <strong>Solicitud</strong></h2><hr></div></div>";        $("#carta").html(texto);
+          texto = "<iframe id='cartapdf' frameborder='0' width='100%' height='400'></iframe>";
+          $("#pdf").append(texto);
+          var doc = new jsPDF();
+          doc.setFontSize(12);
+          doc.text(20, 40, "Bogota DC");
+          doc.text(160, 40, f.getDate() + "/" + (f.getMonth() +1) + "/" + f.getFullYear());
+          doc.text(20, 70, "Solicitud Docentes Vinculacion Especial");
+          doc.text(20, 80, "La presente es para realizar la solicitud de la creacion de un concurso abreviado para");
+          doc.text(20, 85, "la vinculacion de "+number+" nuevos docentes antes de la fecha "+date+".");
+          doc.text(20, 115, "_________________________");
+          doc.text(20, 120, "Att: "+user);
+          var string = doc.output('datauristring');
+          $('#cartapdf').attr('src', string);
+        }else{
+          alert("Los datos no han sido completados");
+        }
+      })
+    </script>
+</body>
+
+</html>
