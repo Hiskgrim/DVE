@@ -1,0 +1,49 @@
+{
+	"docentes": [
+
+		{
+			"nombre1": "Alejandro",
+			"nombre2": "Paolo",
+			"apellido1": "Daza",
+                        "apellido2": "",
+                        "fechanacimiento": "1980-12-12"
+		},
+                {
+			"nombre1": "Fabio",
+			"nombre2": "",
+			"apellido1": "Parra",
+                        "apellido2": "",
+                        "fechanacimiento": "1980-11-11"
+		},
+                {
+                	"nombre1": "Julian",
+			"nombre2": "David",
+			"apellido1": "Orozco",
+                        "apellido2": "Perez",
+                        "fechanacimiento": "1980-11-21"
+		}
+	],
+        "contratos": [
+                {
+                    "numero": "001",
+                    "fecharegistro": "2016-01-01",
+                    "salario": "3000000",
+                    "tipocontrato": "Asociado",
+										"estado": "Vigente"
+                },
+                {
+                    "numero": "002",
+                    "fecharegistro": "2016-01-01",
+                    "salario": "5000000",
+                    "tipocontrato": "Titular",
+										"estado": "Vigente"
+                },
+                {
+                    "numero": "001",
+                    "fecharegistro": "2016-01-01",
+                    "salario": "2000000",
+                    "tipocontrato": "Asistente",
+										"estado": "Cancelado"
+                }
+        ]
+}
