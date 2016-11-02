@@ -4,7 +4,7 @@ import (
   "fmt"
   "bufio"
   "os"
-  . "golog"
+  . "github.com/mndrix/golog"
 )
 
 func main(){
