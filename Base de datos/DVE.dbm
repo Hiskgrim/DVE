@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+         Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel>
+<schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="contratacionaldve" fill-color="#e1e1e1">
+</schema>
+
+<schema name="contratacionDVE" fill-color="#e1e1e1">
+</schema>
+
+<database name="CDVE">
+</database>
+
+<table name="contrato_general">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="477" y="468.5"/>
+	<column name="numero_contrato">
+		<type name="character varying"/>
+	</column>
+	<column name="vigencia" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="objeto_contrato">
+		<type name="character varying" length="9000"/>
+	</column>
+	<column name="plazo_ejecución" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="clausula_registro_presupuestal">
+		<type name="boolean"/>
+	</column>
+	<column name="sede_solicitante">
+		<type name="character varying" length="50"/>
+	</column>
+	<column name="dependencia_solicitante">
+		<type name="character varying" length="10"/>
+	</column>
+	<column name="numero_solicitud_necesidad" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="numero_cdp" not-null="true">
+		<type name="smallint"/>
+	</column>
+	<column name="contratista" not-null="true">
+		<type name="numeric" length="16" precision="0"/>
+	</column>
+	<column name="valor_contrato" not-null="true">
+		<type name="numeric" length="16" precision="2"/>
+	</column>
+	<column name="justificacion" not-null="true">
+		<type name="character varying"/>
+	</column>
+	<column name="descripcion_forma_pago" not-null="true">
+		<type name="character varying"/>
+	</column>
+	<column name="condiciones" not-null="true">
+		<type name="character varying"/>
+	</column>
+	<column name="fecha_registro" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="tipologia_contrato" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="tipo_compromiso" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="modalidad_seleccion" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="procedimiento" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="regimen_contratacion" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="tipo_gasto" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="toma_gasto_inversion" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="origen_presupuesto" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="origen_recursos" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="tipo_moneda" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="valor_contrato_me">
+		<type name="numeric" length="16" precision="3"/>
+	</column>
+	<column name="valor_tasa_cambio">
+		<type name="numeric" length="15" precision="10"/>
+	</column>
+	<column name="tipo_control" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="observaciones">
+		<type name="character varying" length="1000"/>
+	</column>
+	<column name="clase_contratista">
+		<type name="integer"/>
+	</column>
+	<column name="convenio">
+		<type name="character varying"/>
+	</column>
+	<column name="numero_constancia">
+		<type name="integer"/>
+	</column>
+	<column name="estado">
+		<type name="boolean"/>
+	</column>
+	<column name="registro_presupuestal">
+		<type name="integer"/>
+	</column>
+	<constraint name="pk_contrato_general" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.contrato_general">
+		<columns names="numero_contrato" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="contrato_especial">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="1294" y="650.5"/>
+	<column name="id_contrato_especial">
+		<type name="integer"/>
+	</column>
+	<column name="estado_registro" not-null="true">
+		<type name="boolean"/>
+	</column>
+	<column name="fecha_registro" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="perfil">
+		<type name="character varying"/>
+	</column>
+	<constraint name="id_contrato_normal" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.contrato_especial">
+		<columns names="id_contrato_especial" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="funcionario">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="1478" y="1073.5"/>
+	<column name="identificacion" not-null="true">
+		<type name="numeric"/>
+	</column>
+	<column name="nombe1" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="nombre2">
+		<type name="text"/>
+	</column>
+	<column name="apellido1" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="apellido2">
+		<type name="text"/>
+	</column>
+	<column name="fechanacimiento" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="sexo" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="rut" not-null="true">
+		<type name="numeric"/>
+	</column>
+	<column name="direccion" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="telefono" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="ciudad" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="email" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="pk_funcionario" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.funcionario">
+		<columns names="identificacion" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="experiencia_laboral">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="2167.5" y="440"/>
+	<column name="id" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="fecha_inicio">
+		<type name="date"/>
+	</column>
+	<column name="fecha_fin">
+		<type name="date"/>
+	</column>
+	<constraint name="pk_experiencia_laboral" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.experiencia_laboral">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="oficio">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="2156.5" y="675.5"/>
+	<column name="id">
+		<type name="serial"/>
+	</column>
+	<column name="descripcion" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="ocupacion">
+		<type name="text"/>
+	</column>
+	<column name="sector">
+		<type name="text"/>
+	</column>
+	<column name="organizacion">
+		<type name="numeric"/>
+	</column>
+	<column name="anio_inicio">
+		<type name="integer"/>
+	</column>
+	<column name="anio_fin">
+		<type name="integer"/>
+	</column>
+	<constraint name="pk_asignatura" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.oficio">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="cancelacion_contrato">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="0" y="539.5"/>
+	<column name="id" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="fecha" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="causa" not-null="true">
+		<type name="character varying"/>
+	</column>
+</table>
+
+<table name="carga_academica">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="2216" y="1032.5"/>
+	<column name="id_carga">
+		<type name="integer"/>
+	</column>
+	<column name="horas" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="pk_carga_academica" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.carga_academica">
+		<columns names="id_carga" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipo_carga_academica">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="1763" y="1035"/>
+	<column name="id">
+		<type name="integer"/>
+	</column>
+	<column name="descripcion" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="pk_tipo_carga_academica" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.tipo_carga_academica">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tipo_carga_academica_has_many_carga_academica" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="&quot;contratacionDVE&quot;.tipo_carga_academica"
+	 dst-table="&quot;contratacionDVE&quot;.carga_academica"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<table name="publicacion">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="1420.5" y="109.5"/>
+	<column name="id">
+		<type name="serial"/>
+	</column>
+	<column name="anio" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="nombre" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="revista" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="clasificación" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="evento" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="pk_publicacion" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.publicacion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipo_identificacion">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="2086" y="1157.5"/>
+	<column name="id">
+		<type name="smallint"/>
+	</column>
+	<column name="descripcion" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="pk_tipo_identificacion" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.tipo_identificacion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tipo_identificacion_has_many_funcionario" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="12" constr-indexes="1"
+	 src-table="&quot;contratacionDVE&quot;.tipo_identificacion"
+	 dst-table="&quot;contratacionDVE&quot;.funcionario"
+	 src-required="false" dst-required="false"/>
+
+<table name="docente">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="1748.5" y="689"/>
+	<column name="codigo">
+		<type name="numeric"/>
+	</column>
+	<constraint name="pk_docente" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.docente">
+		<columns names="codigo" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="resolucion">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="1416.5" y="912"/>
+	<column name="numero" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="anio" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="descripcion" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="entidad" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="pk2_esolucion" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.resolucion">
+		<columns names="numero,anio" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="resolucion_has_many_contrato_especial" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="4,5" constr-indexes="1"
+	 src-table="&quot;contratacionDVE&quot;.resolucion"
+	 dst-table="&quot;contratacionDVE&quot;.contrato_especial"
+	 src-required="false" dst-required="false"/>
+
+<table name="reclasificacion">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="1001.5" y="954.667"/>
+	<column name="id">
+		<type name="integer"/>
+	</column>
+	<column name="categoria" not-null="true">
+		<type name="numeric"/>
+	</column>
+	<constraint name="pk_reclasificacion" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.reclasificacion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="extension">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="892.5" y="450.5"/>
+	<column name="id">
+		<type name="integer"/>
+	</column>
+	<column name="fecharegistro" not-null="true">
+		<type name="date"/>
+	</column>
+	<column name="motivo" not-null="true">
+		<type name="text"/>
+	</column>
+</table>
+
+<relationship name="resolucion_has_many_reclasificacion" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2,3" constr-indexes="1"
+	 src-table="&quot;contratacionDVE&quot;.resolucion"
+	 dst-table="&quot;contratacionDVE&quot;.reclasificacion"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="cancelacion_contrato_has_one_contrato_general" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="0,1"
+	 src-table="&quot;contratacionDVE&quot;.contrato_general"
+	 dst-table="&quot;contratacionDVE&quot;.cancelacion_contrato"
+	 src-required="false" dst-required="false">
+	<label ref-type="dst-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<table name="estado_contrato">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="17" y="759.5"/>
+	<column name="id_estado" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="fecha_registro" not-null="true">
+		<type name="smallint"/>
+	</column>
+	<constraint name="pk_salario" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.estado_contrato">
+		<columns names="id_estado" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="tipo_estado">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="121" y="1089"/>
+	<column name="id">
+		<type name="integer"/>
+	</column>
+	<column name="descripcion" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="pk_tipo_contrato" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.tipo_estado">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tipo_estado_has_many_estado_contrato" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="&quot;contratacionDVE&quot;.tipo_estado"
+	 dst-table="&quot;contratacionDVE&quot;.estado_contrato"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="contrato_general_has_many_estado_contrato" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="2"
+	 src-table="&quot;contratacionDVE&quot;.contrato_general"
+	 dst-table="&quot;contratacionDVE&quot;.estado_contrato"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="docente_has_one_funcionario" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="1" constr-indexes="1,2"
+	 src-table="&quot;contratacionDVE&quot;.funcionario"
+	 dst-table="&quot;contratacionDVE&quot;.docente"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="contrato_general_has_many_contrato_especial" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="6" constr-indexes="2"
+	 src-table="&quot;contratacionDVE&quot;.contrato_general"
+	 dst-table="&quot;contratacionDVE&quot;.contrato_especial"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="contrato_general_has_many_reclasificacion" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="4" constr-indexes="2"
+	 src-table="&quot;contratacionDVE&quot;.contrato_general"
+	 dst-table="&quot;contratacionDVE&quot;.reclasificacion"
+	 src-required="false" dst-required="false"/>
+
+<table name="puntaje">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="1759" y="319"/>
+	<column name="id">
+		<type name="integer"/>
+	</column>
+	<column name="valor" not-null="true">
+		<type name="numeric"/>
+	</column>
+	<constraint name="pk_puntaje" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.puntaje">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="puntaje_has_many_publicacion" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="6" constr-indexes="1"
+	 src-table="&quot;contratacionDVE&quot;.puntaje"
+	 dst-table="&quot;contratacionDVE&quot;.publicacion"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="puntaje_has_one_docente" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1,2"
+	 src-table="&quot;contratacionDVE&quot;.docente"
+	 dst-table="&quot;contratacionDVE&quot;.puntaje"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="extension_has_one_contrato_especial" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="0,1"
+	 src-table="&quot;contratacionDVE&quot;.contrato_especial"
+	 dst-table="&quot;contratacionDVE&quot;.extension"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="experiencia_laboral_has_many_oficio" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="7" constr-indexes="1"
+	 src-table="&quot;contratacionDVE&quot;.experiencia_laboral"
+	 dst-table="&quot;contratacionDVE&quot;.oficio"
+	 src-required="false" dst-required="false"/>
+
+<table name="tipo_titulo">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="2198" y="89.5"/>
+	<column name="id">
+		<type name="smallint"/>
+	</column>
+	<column name="descripcion" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="pk_tipo_titulo" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.tipo_titulo">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="titulo">
+	<schema name="public"/>
+	<position x="1790.5" y="50"/>
+	<column name="id">
+		<type name="integer"/>
+	</column>
+	<column name="anio" not-null="true">
+		<type name="integer"/>
+	</column>
+	<column name="entidad" not-null="true">
+		<type name="text"/>
+	</column>
+	<column name="descripcion" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="pk_titulo" type="pk-constr" factor="10" table="public.titulo">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tipo_titulo_has_many_titulo" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="4" constr-indexes="1"
+	 src-table="&quot;contratacionDVE&quot;.tipo_titulo"
+	 dst-table="public.titulo"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="puntaje_has_many_titulo" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="5" constr-indexes="2"
+	 src-table="&quot;contratacionDVE&quot;.puntaje"
+	 dst-table="public.titulo"
+	 src-required="false" dst-required="false"/>
+
+<table name="renovacion">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="385.5" y="1161.83"/>
+	<column name="id">
+		<type name="integer"/>
+	</column>
+	<column name="fecharegistro" not-null="true">
+		<type name="integer"/>
+	</column>
+	<constraint name="pk_renovacion" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.renovacion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="renovacion_has_one_contrato_general" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1,2"
+	 src-table="&quot;contratacionDVE&quot;.contrato_general"
+	 dst-table="&quot;contratacionDVE&quot;.renovacion"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="docente_has_many_contrato_especial" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="7" constr-indexes="3"
+	 src-table="&quot;contratacionDVE&quot;.docente"
+	 dst-table="&quot;contratacionDVE&quot;.contrato_especial"
+	 src-required="false" dst-required="false"/>
+
+<table name="descarga">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="1312" y="398"/>
+	<column name="id">
+		<type name="smallint"/>
+	</column>
+	<column name="valor">
+		<type name="smallint"/>
+	</column>
+	<column name="descripcion" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="pk_descarga" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.descarga">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="contrato_especial_has_many_descarga" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="1"
+	 src-table="&quot;contratacionDVE&quot;.contrato_especial"
+	 dst-table="&quot;contratacionDVE&quot;.descarga"
+	 src-required="false" dst-required="false"/>
+
+<table name="tipo_descarga">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="1028" y="255"/>
+	<column name="id">
+		<type name="integer"/>
+	</column>
+	<column name="descripcion" not-null="true">
+		<type name="text"/>
+	</column>
+	<constraint name="pk_tipo_descarga" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.tipo_descarga">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="tipo_descarga_has_many_descarga" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="4" constr-indexes="2"
+	 src-table="&quot;contratacionDVE&quot;.tipo_descarga"
+	 dst-table="&quot;contratacionDVE&quot;.descarga"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="tipo_carga_academica_has_one_docente" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1,2"
+	 src-table="&quot;contratacionDVE&quot;.docente"
+	 dst-table="&quot;contratacionDVE&quot;.tipo_carga_academica"
+	 src-required="false" dst-required="false"/>
+
+<table name="supervisor">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<position x="815" y="1169.33"/>
+</table>
+
+<relationship name="funcionario_has_many_supervisor" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="0" constr-indexes="0"
+	 src-table="&quot;contratacionDVE&quot;.funcionario"
+	 dst-table="&quot;contratacionDVE&quot;.supervisor"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="contrato_general_has_many_supervisor" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="1" constr-indexes="1"
+	 src-table="&quot;contratacionDVE&quot;.contrato_general"
+	 dst-table="&quot;contratacionDVE&quot;.supervisor"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="experiencia_laboral_has_one_docente" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="1,2"
+	 src-table="&quot;contratacionDVE&quot;.docente"
+	 dst-table="&quot;contratacionDVE&quot;.experiencia_laboral"
+	 src-required="false" dst-required="false"/>
+
+</dbmodel>
