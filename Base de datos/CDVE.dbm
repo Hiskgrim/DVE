@@ -13,21 +13,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <schema name="contratacionDVE" fill-color="#e1e1e1">
 </schema>
 
-<database name="CDVE">
+<database name="CDVE" encoding="UTF8">
+	<tablespace name="&quot;tb_CVED&quot;"/>
 </database>
 
 <table name="contrato_general">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="446" y="192.5"/>
+	<position x="484" y="316.5"/>
 	<column name="numero_contrato">
 		<type name="character varying"/>
-	</column>
-	<column name="vigencia" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="objeto_contrato">
-		<type name="character varying" length="9000"/>
 	</column>
 	<column name="numero_cdp" not-null="true">
 		<type name="smallint"/>
@@ -59,13 +54,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="clase_contratista">
 		<type name="integer"/>
 	</column>
-	<column name="estado">
-		<type name="boolean"/>
-	</column>
 	<column name="registro_presupuestal">
 		<type name="integer"/>
 	</column>
-	<constraint name="pk_contrato_general" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.contrato_general">
+	<constraint name="key_contrato_general" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.contrato_general">
 		<columns names="numero_contrato" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -73,7 +65,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="contrato_especial">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="1036" y="98.5"/>
+	<position x="1030" y="126.5"/>
 	<column name="id_contrato_especial">
 		<type name="integer"/>
 	</column>
@@ -86,18 +78,15 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="fecha_final" not-null="true">
 		<type name="date"/>
 	</column>
-	<column name="perfil">
-		<type name="character varying"/>
-	</column>
-	<constraint name="id_contrato_normal" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.contrato_especial">
+	<constraint name="key_contrato_normal" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.contrato_especial">
 		<columns names="id_contrato_especial" ref-type="src-columns"/>
 	</constraint>
 </table>
 
-<table name="funcionario">
+<table name="informacion_docente">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="1361" y="490.5"/>
+	<position x="1160" y="536.5"/>
 	<column name="identificacion" not-null="true">
 		<type name="numeric"/>
 	</column>
@@ -140,7 +129,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="email">
 		<type name="text"/>
 	</column>
-	<constraint name="pk_funcionario" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.funcionario">
+	<constraint name="key_informacion_docente" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.informacion_docente">
 		<columns names="identificacion" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -148,16 +137,22 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="cancelacion_contrato">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="39" y="63.5"/>
-	<column name="id" not-null="true">
-		<type name="integer"/>
+	<position x="25" y="54.5"/>
+	<column name="id_cancelacion_contrato" not-null="true">
+		<type name="serial"/>
 	</column>
-	<column name="fecha" not-null="true">
+	<column name="fecha_inicio">
+		<type name="date"/>
+	</column>
+	<column name="fecha_final">
 		<type name="date"/>
 	</column>
 	<column name="causa" not-null="true">
 		<type name="character varying"/>
 	</column>
+	<constraint name="key_cancelacion_contrato" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.cancelacion_contrato">
+		<columns names="id_cancelacion_contrato" ref-type="src-columns"/>
+	</constraint>
 </table>
 
 <table name="carga_academica">
@@ -173,7 +168,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="semanas" not-null="true">
 		<type name="integer"/>
 	</column>
-	<constraint name="pk_carga_academica" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.carga_academica">
+	<constraint name="key_carga_academica" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.carga_academica">
 		<columns names="id_carga" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -181,11 +176,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="docente">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="1607.5" y="254"/>
+	<position x="1628.5" y="282"/>
 	<column name="codigo">
 		<type name="numeric"/>
 	</column>
-	<constraint name="pk_docente" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.docente">
+	<constraint name="key_docente" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.docente">
 		<columns names="codigo" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -193,7 +188,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="resolucion">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="1045.5" y="365"/>
+	<position x="1009.5" y="414"/>
 	<column name="numero" not-null="true">
 		<type name="integer"/>
 	</column>
@@ -203,10 +198,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="descripcion" not-null="true">
 		<type name="text"/>
 	</column>
-	<column name="entidad" not-null="true">
-		<type name="text"/>
-	</column>
-	<constraint name="pk2_esolucion" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.resolucion">
+	<constraint name="key_compose_resolucion" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.resolucion">
 		<columns names="numero,anio" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -215,40 +207,9 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="5,6" constr-indexes="1"
+	 col-indexes="4,5" constr-indexes="1"
 	 src-table="&quot;contratacionDVE&quot;.resolucion"
 	 dst-table="&quot;contratacionDVE&quot;.contrato_especial"
-	 src-required="true" dst-required="false">
-	<label ref-type="src-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
-
-<table name="clasificacion">
-	<schema name="&quot;contratacionDVE&quot;"/>
-	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="814.5" y="585.667"/>
-	<column name="id">
-		<type name="integer"/>
-	</column>
-	<column name="categoria" not-null="true">
-		<type name="numeric"/>
-	</column>
-	<column name="dedicacion" not-null="true">
-		<type name="varchar" length="20"/>
-	</column>
-	<constraint name="pk_reclasificacion" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.clasificacion">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
-
-<relationship name="resolucion_has_many_clasificacion" type="rel1n"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="3,4" constr-indexes="1"
-	 src-table="&quot;contratacionDVE&quot;.resolucion"
-	 dst-table="&quot;contratacionDVE&quot;.clasificacion"
 	 src-required="true" dst-required="false">
 	<label ref-type="src-label">
 		<position x="0" y="0"/>
@@ -258,11 +219,29 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</label>
 </relationship>
 
+<table name="clasificacion">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<tablespace name="&quot;tb_CVED&quot;"/>
+	<position x="1689.5" y="553.667"/>
+	<column name="id">
+		<type name="integer"/>
+	</column>
+	<column name="categoria" not-null="true">
+		<type name="numeric"/>
+	</column>
+	<column name="dedicacion" not-null="true">
+		<type name="varchar" length="20"/>
+	</column>
+	<constraint name="key_clasificacion" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.clasificacion">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
 <relationship name="cancelacion_contrato_has_one_contrato_general" type="rel11"
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="3" constr-indexes="0,1"
+	 col-indexes="4" constr-indexes="1,2"
 	 src-table="&quot;contratacionDVE&quot;.contrato_general"
 	 dst-table="&quot;contratacionDVE&quot;.cancelacion_contrato"
 	 src-required="false" dst-required="false">
@@ -274,14 +253,17 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="estado_contrato">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="91" y="342.5"/>
+	<position x="30" y="303.5"/>
 	<column name="id_estado" not-null="true">
 		<type name="serial"/>
 	</column>
-	<column name="fecha_registro" not-null="true">
-		<type name="smallint"/>
+	<column name="fecha_inicio" not-null="true">
+		<type name="date"/>
 	</column>
-	<constraint name="pk_salario" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.estado_contrato">
+	<column name="fecha_final" not-null="true">
+		<type name="date"/>
+	</column>
+	<constraint name="key_salario" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.estado_contrato">
 		<columns names="id_estado" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -289,14 +271,14 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="tipo_estado">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="106" y="557"/>
+	<position x="47" y="517"/>
 	<column name="id">
 		<type name="integer"/>
 	</column>
 	<column name="descripcion" not-null="true">
 		<type name="text"/>
 	</column>
-	<constraint name="pk_tipo_contrato" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.tipo_estado">
+	<constraint name="key_tipo_contrato" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.tipo_estado">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -305,25 +287,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="2" constr-indexes="1"
+	 col-indexes="3" constr-indexes="1"
 	 src-table="&quot;contratacionDVE&quot;.tipo_estado"
 	 dst-table="&quot;contratacionDVE&quot;.estado_contrato"
-	 src-required="true" dst-required="false"/>
-
-<relationship name="docente_has_one_funcionario" type="rel11"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="1" constr-indexes="3,4"
-	 src-table="&quot;contratacionDVE&quot;.funcionario"
-	 dst-table="&quot;contratacionDVE&quot;.docente"
 	 src-required="true" dst-required="false"/>
 
 <relationship name="contrato_general_has_many_contrato_especial" type="rel1n"
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="7" constr-indexes="2"
+	 col-indexes="6" constr-indexes="2"
 	 src-table="&quot;contratacionDVE&quot;.contrato_general"
 	 dst-table="&quot;contratacionDVE&quot;.contrato_especial"
 	 src-required="true" dst-required="false"/>
@@ -331,7 +304,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="renovacion">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="321.5" y="584.83"/>
+	<position x="193.5" y="619.83"/>
 	<column name="id">
 		<type name="integer"/>
 	</column>
@@ -341,7 +314,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="fecha_final" not-null="true">
 		<type name="date"/>
 	</column>
-	<constraint name="pk_renovacion" type="pk-constr" factor="10" table="&quot;contratacionDVE&quot;.renovacion">
+	<constraint name="key_renovacion" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.renovacion">
 		<columns names="id" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -363,7 +336,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="8" constr-indexes="3"
+	 col-indexes="7" constr-indexes="3"
 	 src-table="&quot;contratacionDVE&quot;.docente"
 	 dst-table="&quot;contratacionDVE&quot;.contrato_especial"
 	 src-required="true" dst-required="false"/>
@@ -372,7 +345,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="2" constr-indexes="1,2"
+	 col-indexes="1" constr-indexes="1,2"
 	 src-table="&quot;contratacionDVE&quot;.docente"
 	 dst-table="&quot;contratacionDVE&quot;.carga_academica"
 	 src-required="false" dst-required="true"/>
@@ -381,25 +354,16 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="15" constr-indexes="1,2"
+	 col-indexes="12" constr-indexes="1,2"
 	 src-table="&quot;contratacionDVE&quot;.contrato_general"
 	 dst-table="&quot;contratacionDVE&quot;.estado_contrato"
 	 src-required="false" dst-required="true"/>
-
-<relationship name="contrato_general_has_many_clasificacion" type="rel1n"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="5" constr-indexes="2"
-	 src-table="&quot;contratacionDVE&quot;.contrato_general"
-	 dst-table="&quot;contratacionDVE&quot;.clasificacion"
-	 src-required="true" dst-required="false"/>
 
 <relationship name="resolucion_has_many_docente" type="rel1n"
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="3,4" constr-indexes="5"
+	 col-indexes="2,3" constr-indexes="3"
 	 src-table="&quot;contratacionDVE&quot;.resolucion"
 	 dst-table="&quot;contratacionDVE&quot;.docente"
 	 src-required="false" dst-required="false"/>
@@ -435,6 +399,48 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 col-indexes="3" constr-indexes="1"
 	 src-table="&quot;contratacionDVE&quot;.valor_contrato"
 	 dst-table="&quot;contratacionDVE&quot;.carga_academica"
+	 src-required="false" dst-required="false"/>
+
+<table name="facultad">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<tablespace name="&quot;tb_CVED&quot;"/>
+	<position x="767" y="618"/>
+	<column name="id_facultad">
+		<type name="serial"/>
+	</column>
+	<column name="nombre">
+		<type name="varchar" length="150"/>
+	</column>
+	<constraint name="key_facultad" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.facultad">
+		<columns names="id_facultad" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="informacion_docente_has_one_docente" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="14" constr-indexes="1,2"
+	 src-table="&quot;contratacionDVE&quot;.docente"
+	 dst-table="&quot;contratacionDVE&quot;.informacion_docente"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="facultad_has_one_resolucion" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2,3" constr-indexes="1,2"
+	 src-table="&quot;contratacionDVE&quot;.resolucion"
+	 dst-table="&quot;contratacionDVE&quot;.facultad"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="clasificacion_has_one_docente" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="3" constr-indexes="1,2"
+	 src-table="&quot;contratacionDVE&quot;.docente"
+	 dst-table="&quot;contratacionDVE&quot;.clasificacion"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
