@@ -4,68 +4,38 @@ CAUTION: Do not modify this file unless you know what you are doing.
          Unexpected results may occur if the code is changed deliberately.
 -->
 <dbmodel>
+<role name="alana_contratistas"
+      inherit="true"
+      login="true"
+      encrypted="true"
+      password="md54bb64bb6f90a8d27dcc75d89d00028da">
+</role>
+
 <tablespace name="tb_CVED" directory="'D:\Programas\Postgres 9.2\data\tb_CVED'">
 </tablespace>
 
 <schema name="public" protected="true" fill-color="#e1e1e1" sql-disabled="true">
 </schema>
 
-<schema name="contratacionDVE" fill-color="#e1e1e1">
+<schema name="contratacionDVE" rect-visible="true" fill-color="#00dede">
+</schema>
+
+<schema name="contractual" rect-visible="true" fill-color="#d66b29">
+	<role name="alana_contratistas"/>
+</schema>
+
+<schema name="hojas_de_vida" rect-visible="true" fill-color="#3db95a">
 </schema>
 
 <database name="CDVE" encoding="UTF8">
 	<tablespace name="&quot;tb_CVED&quot;"/>
 </database>
 
-<table name="contrato_general">
-	<schema name="&quot;contratacionDVE&quot;"/>
-	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="484" y="316.5"/>
-	<column name="numero_contrato">
-		<type name="character varying"/>
-	</column>
-	<column name="numero_cdp" not-null="true">
-		<type name="smallint"/>
-	</column>
-	<column name="justificacion" not-null="true">
-		<type name="character varying"/>
-	</column>
-	<column name="fecha_registro" not-null="true">
-		<type name="date"/>
-	</column>
-	<column name="tipologia_contrato" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="regimen_contratacion" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="tipo_gasto" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="origen_presupuesto" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="origen_recursos" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="tipo_moneda" not-null="true">
-		<type name="integer"/>
-	</column>
-	<column name="clase_contratista">
-		<type name="integer"/>
-	</column>
-	<column name="registro_presupuestal">
-		<type name="integer"/>
-	</column>
-	<constraint name="key_contrato_general" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.contrato_general">
-		<columns names="numero_contrato" ref-type="src-columns"/>
-	</constraint>
-</table>
-
 <table name="contrato_especial">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="1030" y="126.5"/>
+	<comment><![CDATA[El contrato de los docentes por VE, que es una especializacion del esquema contractual.]]></comment>
+	<position x="922" y="128.5"/>
 	<column name="id_contrato_especial">
 		<type name="integer"/>
 	</column>
@@ -84,9 +54,10 @@ CAUTION: Do not modify this file unless you know what you are doing.
 </table>
 
 <table name="informacion_docente">
-	<schema name="&quot;contratacionDVE&quot;"/>
+	<schema name="hojas_de_vida"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="1160" y="536.5"/>
+	<comment><![CDATA[informacion necesaria del docente para realizar la resolucion, esta tabla pertenece a otro esquema, el esquela de hojas de vida]]></comment>
+	<position x="1324" y="641.5"/>
 	<column name="identificacion" not-null="true">
 		<type name="numeric"/>
 	</column>
@@ -129,7 +100,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	<column name="email">
 		<type name="text"/>
 	</column>
-	<constraint name="key_informacion_docente" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.informacion_docente">
+	<constraint name="key_informacion_docente" type="pk-constr" factor="100" table="hojas_de_vida.informacion_docente">
 		<columns names="identificacion" ref-type="src-columns"/>
 	</constraint>
 </table>
@@ -137,7 +108,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="cancelacion_contrato">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="25" y="54.5"/>
+	<comment><![CDATA[se tiene en cuenta la razon de la cancelacion del contrato y la fecha de finalizacion del mismo, tambien se tiene adicional la fecha de inicio del contrato]]></comment>
+	<position x="0" y="269.5"/>
 	<column name="id_cancelacion_contrato" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -158,6 +130,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="carga_academica">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
+	<comment><![CDATA[La carga que se le asigna a cada docente en horas y semanas.]]></comment>
 	<position x="1432" y="18.5"/>
 	<column name="id_carga">
 		<type name="integer"/>
@@ -176,6 +149,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="docente">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
+	<comment><![CDATA[Tabla que referencia la informacion y la clasificacion del docente]]></comment>
 	<position x="1628.5" y="282"/>
 	<column name="codigo">
 		<type name="numeric"/>
@@ -188,6 +162,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="resolucion">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
+	<comment><![CDATA[se tiene en cuenta el numero y año que tendra asignada la resolucion cuando se genera, por eso tiene dos llaver primarias.]]></comment>
 	<position x="1009.5" y="414"/>
 	<column name="numero" not-null="true">
 		<type name="integer"/>
@@ -222,7 +197,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="clasificacion">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="1689.5" y="553.667"/>
+	<comment><![CDATA[la categoria del docente (Auxiliares, Asistenes, Asociados, Titulares) y la dedicacion (Hc, Tc, Mt)]]></comment>
+	<position x="1764.5" y="524.667"/>
 	<column name="id">
 		<type name="integer"/>
 	</column>
@@ -237,23 +213,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	</constraint>
 </table>
 
-<relationship name="cancelacion_contrato_has_one_contrato_general" type="rel11"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="4" constr-indexes="1,2"
-	 src-table="&quot;contratacionDVE&quot;.contrato_general"
-	 dst-table="&quot;contratacionDVE&quot;.cancelacion_contrato"
-	 src-required="false" dst-required="false">
-	<label ref-type="dst-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
-
 <table name="estado_contrato">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="30" y="303.5"/>
+	<comment><![CDATA[Nos dice el estado actual del contrato]]></comment>
+	<position x="27" y="507.5"/>
 	<column name="id_estado" not-null="true">
 		<type name="serial"/>
 	</column>
@@ -271,7 +235,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="tipo_estado">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="47" y="517"/>
+	<comment><![CDATA[El tipo estado del contrato contempla si esta activo o cancelado.]]></comment>
+	<position x="40" y="748"/>
 	<column name="id">
 		<type name="integer"/>
 	</column>
@@ -292,51 +257,11 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 dst-table="&quot;contratacionDVE&quot;.estado_contrato"
 	 src-required="true" dst-required="false"/>
 
-<relationship name="contrato_general_has_many_contrato_especial" type="rel1n"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="6" constr-indexes="2"
-	 src-table="&quot;contratacionDVE&quot;.contrato_general"
-	 dst-table="&quot;contratacionDVE&quot;.contrato_especial"
-	 src-required="true" dst-required="false"/>
-
-<table name="renovacion">
-	<schema name="&quot;contratacionDVE&quot;"/>
-	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="193.5" y="619.83"/>
-	<column name="id">
-		<type name="integer"/>
-	</column>
-	<column name="fecha_inicio" not-null="true">
-		<type name="date"/>
-	</column>
-	<column name="fecha_final" not-null="true">
-		<type name="date"/>
-	</column>
-	<constraint name="key_renovacion" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.renovacion">
-		<columns names="id" ref-type="src-columns"/>
-	</constraint>
-</table>
-
-<relationship name="renovacion_has_one_contrato_general" type="rel11"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="3" constr-indexes="1,2"
-	 src-table="&quot;contratacionDVE&quot;.contrato_general"
-	 dst-table="&quot;contratacionDVE&quot;.renovacion"
-	 src-required="true" dst-required="false">
-	<label ref-type="dst-label">
-		<position x="0" y="0"/>
-	</label>
-</relationship>
-
 <relationship name="docente_has_many_contrato_especial" type="rel1n"
 	 src-col-pattern="{sc}_{st}"
 	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
 	 src-fk-pattern="{st}_fk"
-	 col-indexes="7" constr-indexes="3"
+	 col-indexes="6" constr-indexes="2"
 	 src-table="&quot;contratacionDVE&quot;.docente"
 	 dst-table="&quot;contratacionDVE&quot;.contrato_especial"
 	 src-required="true" dst-required="false"/>
@@ -348,15 +273,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 col-indexes="1" constr-indexes="1,2"
 	 src-table="&quot;contratacionDVE&quot;.docente"
 	 dst-table="&quot;contratacionDVE&quot;.carga_academica"
-	 src-required="false" dst-required="true"/>
-
-<relationship name="estado_contrato_has_one_contrato_general" type="rel11"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="12" constr-indexes="1,2"
-	 src-table="&quot;contratacionDVE&quot;.contrato_general"
-	 dst-table="&quot;contratacionDVE&quot;.estado_contrato"
 	 src-required="false" dst-required="true"/>
 
 <relationship name="resolucion_has_many_docente" type="rel1n"
@@ -371,7 +287,8 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="valor_contrato">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="578" y="27"/>
+	<comment><![CDATA[Se calcula el valor del contrato de los docentes en base a la carga academica y al contrato general, puesto que se debe tener en cuenta el RP]]></comment>
+	<position x="419" y="18"/>
 	<column name="id_valor_contrato">
 		<type name="serial"/>
 	</column>
@@ -382,15 +299,6 @@ CAUTION: Do not modify this file unless you know what you are doing.
 		<columns names="id_valor_contrato" ref-type="src-columns"/>
 	</constraint>
 </table>
-
-<relationship name="contrato_general_has_many_valor_contrato" type="rel1n"
-	 src-col-pattern="{sc}_{st}"
-	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
-	 src-fk-pattern="{st}_fk"
-	 col-indexes="2" constr-indexes="1"
-	 src-table="&quot;contratacionDVE&quot;.contrato_general"
-	 dst-table="&quot;contratacionDVE&quot;.valor_contrato"
-	 src-required="false" dst-required="false"/>
 
 <relationship name="valor_contrato_has_many_carga_academica" type="rel1n"
 	 src-col-pattern="{sc}_{st}"
@@ -404,11 +312,12 @@ CAUTION: Do not modify this file unless you know what you are doing.
 <table name="facultad">
 	<schema name="&quot;contratacionDVE&quot;"/>
 	<tablespace name="&quot;tb_CVED&quot;"/>
-	<position x="767" y="618"/>
+	<comment><![CDATA[La facultad en la cual se realiza la resolucion del contrato]]></comment>
+	<position x="951" y="623"/>
 	<column name="id_facultad">
 		<type name="serial"/>
 	</column>
-	<column name="nombre">
+	<column name="nombre" not-null="true">
 		<type name="varchar" length="150"/>
 	</column>
 	<constraint name="key_facultad" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.facultad">
@@ -422,7 +331,7 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 src-fk-pattern="{st}_fk"
 	 col-indexes="14" constr-indexes="1,2"
 	 src-table="&quot;contratacionDVE&quot;.docente"
-	 dst-table="&quot;contratacionDVE&quot;.informacion_docente"
+	 dst-table="hojas_de_vida.informacion_docente"
 	 src-required="false" dst-required="false"/>
 
 <relationship name="facultad_has_one_resolucion" type="rel11"
@@ -441,6 +350,279 @@ CAUTION: Do not modify this file unless you know what you are doing.
 	 col-indexes="3" constr-indexes="1,2"
 	 src-table="&quot;contratacionDVE&quot;.docente"
 	 dst-table="&quot;contratacionDVE&quot;.clasificacion"
+	 src-required="false" dst-required="false"/>
+
+<table name="proyecto_curricular">
+	<schema name="&quot;contratacionDVE&quot;"/>
+	<tablespace name="&quot;tb_CVED&quot;"/>
+	<comment><![CDATA[los proyectos curriculares asociados a la resolucion]]></comment>
+	<position x="940" y="859"/>
+	<column name="id_proyecto_curricular" not-null="true">
+		<type name="serial"/>
+	</column>
+	<column name="nombre">
+		<type name="varchar" length="50"/>
+	</column>
+	<constraint name="key_proyecto_curricular" type="pk-constr" factor="100" table="&quot;contratacionDVE&quot;.proyecto_curricular">
+		<columns names="id_proyecto_curricular" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="facultad_has_many_proyecto_curricular" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2" constr-indexes="1"
+	 src-table="&quot;contratacionDVE&quot;.facultad"
+	 dst-table="&quot;contratacionDVE&quot;.proyecto_curricular"
+	 src-required="false" dst-required="false"/>
+
+<table name="contrato_general">
+	<schema name="contractual"/>
+	<role name="alana_contratistas"/>
+	<comment><![CDATA[Contrato general es el esquema superior a contratacionDVE]]></comment>
+	<position x="363" y="168.2"/>
+	<column name="numero_contrato" not-null="true" default-value="nextval('numero_unico_contrato_seq'::regclass)">
+		<type name="character varying"/>
+		<comment><![CDATA[identificador unico del contrato]]></comment>
+	</column>
+	<column name="vigencia" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[vigencia del contrato]]></comment>
+	</column>
+	<column name="objeto_contrato">
+		<type name="character varying" length="9000"/>
+		<comment><![CDATA[descripcion objeto del contrato]]></comment>
+	</column>
+	<column name="plazo_ejecucion" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[plazo de ejecucion del contrato]]></comment>
+	</column>
+	<column name="forma_pago" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[forma de pago del contrato]]></comment>
+	</column>
+	<column name="ordenador_gasto" not-null="true">
+		<type name="character varying" length="14"/>
+		<comment><![CDATA[identificador foraneo del ordenador del gasto del contrato]]></comment>
+	</column>
+	<column name="clausula_registro_presupuestal">
+		<type name="boolean"/>
+		<comment><![CDATA[clausula de presupuesto que indica si el contrato esta sujeto a disponibilidad de ddinero]]></comment>
+	</column>
+	<column name="sede_solicitante">
+		<type name="character varying" length="50"/>
+		<comment><![CDATA[sede solicitante del contrato, en la solcitud de necesidad se especifica la sede que realiza la solicitud.]]></comment>
+	</column>
+	<column name="dependencia_solicitante">
+		<type name="character varying" length="10"/>
+		<comment><![CDATA[dependencia o convenio solicitante]]></comment>
+	</column>
+	<column name="numero_solicitud_necesidad" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[numero de la solicitud asociada al contrato]]></comment>
+	</column>
+	<column name="numero_cdp" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[numero del cdp con el cual se registra el contrato]]></comment>
+	</column>
+	<column name="contratista" not-null="true">
+		<type name="numeric" length="16" precision="0"/>
+		<comment><![CDATA[Identificacion del Contratista]]></comment>
+	</column>
+	<column name="unidad_ejecucion" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[unidad ejecucion bajo la cual se ejecuta el contrato]]></comment>
+	</column>
+	<column name="valor_contrato" not-null="true">
+		<type name="numeric" length="16" precision="2"/>
+		<comment><![CDATA[corresponde al valor del contrato o de una orden ]]></comment>
+	</column>
+	<column name="justificacion" not-null="true">
+		<type name="character varying"/>
+		<comment><![CDATA[justificacion del contrato]]></comment>
+	</column>
+	<column name="descripcion_forma_pago" not-null="true">
+		<type name="character varying"/>
+		<comment><![CDATA[descripcion de la forma de pago del contrato]]></comment>
+	</column>
+	<column name="condiciones" not-null="true">
+		<type name="character varying"/>
+		<comment><![CDATA[condiciones del contrato]]></comment>
+	</column>
+	<column name="unidad_ejecutora" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo de la unidad ejecutora a cargo del contrato]]></comment>
+	</column>
+	<column name="fecha_registro" not-null="true" default-value="('now'::text)::date">
+		<type name="date"/>
+		<comment><![CDATA[fecha de registro del contrato general]]></comment>
+	</column>
+	<column name="tipologia_contrato" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[Referencia Foranea al Tipo de Contrato que se esta creando]]></comment>
+	</column>
+	<column name="tipo_compromiso" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[referencia foranea al tipo de compromiso]]></comment>
+	</column>
+	<column name="modalidad_seleccion" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo al parameto modalidad de seleccion ]]></comment>
+	</column>
+	<column name="procedimiento" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo del parametro procedimiento de contratacion]]></comment>
+	</column>
+	<column name="regimen_contratacion" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo al parametro regimen de contratacion]]></comment>
+	</column>
+	<column name="tipo_gasto" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo al parametro tipo de gasto ]]></comment>
+	</column>
+	<column name="tema_gasto_inversion" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo al parametro tema a que corresponde el gasto o la inversion]]></comment>
+	</column>
+	<column name="origen_presupueso" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo al parametro origen del presupuesto]]></comment>
+	</column>
+	<column name="origen_recursos" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo al parametro origen de los recursos]]></comment>
+	</column>
+	<column name="tipo_moneda" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo al parametro tipo de moneda ]]></comment>
+	</column>
+	<column name="valor_contrato_me">
+		<type name="numeric" length="16" precision="3"/>
+		<comment><![CDATA[valor del contrato en moneda extrangera]]></comment>
+	</column>
+	<column name="valor_tasa_cambio">
+		<type name="numeric" length="15" precision="10"/>
+		<comment><![CDATA[Valor tasa de cambio en el momento de la suscripcion del contrato]]></comment>
+	</column>
+	<column name="tipo_control" not-null="true">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo al parametro tipo de control ]]></comment>
+	</column>
+	<column name="observaciones">
+		<type name="character varying" length="1000"/>
+		<comment><![CDATA[observaciones del contrato]]></comment>
+	</column>
+	<column name="supervisor">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo del supervisor del contrato]]></comment>
+	</column>
+	<column name="clase_contratista">
+		<type name="integer"/>
+	</column>
+	<column name="convenio">
+		<type name="character varying"/>
+		<comment><![CDATA[convenio asociado al contrato en caso de existir]]></comment>
+	</column>
+	<column name="numero_constancia">
+		<type name="integer"/>
+		<comment><![CDATA[numero de constancia del contrato]]></comment>
+	</column>
+	<column name="estado" default-value="true">
+		<type name="boolean"/>
+		<comment><![CDATA[estado del contrato]]></comment>
+	</column>
+	<column name="resgistro_presupuestal">
+		<type name="integer"/>
+		<comment><![CDATA[identificador del registro presupuestal asociado]]></comment>
+	</column>
+	<column name="tipo_contrato">
+		<type name="integer"/>
+		<comment><![CDATA[identificador foraneo que apunta a la tabla tipo_contrato]]></comment>
+	</column>
+	<constraint name="ck_numero_contrato_contrato_general" type="ck-constr" table="contractual.contrato_general">
+			<expression><![CDATA[((numero_contrato)::text ~ '^(DVE[0-9]+|[0-9]+)$'::text)]]></expression>
+		<comment><![CDATA[check que restringe el formato de numero_contrato  a numeroa y a tres letras (DVE) para el caso de la vinculacion especial]]></comment>
+	</constraint>
+	<constraint name="pk_contrato_general" type="pk-constr" factor="100" table="contractual.contrato_general">
+		<columns names="numero_contrato,vigencia" ref-type="src-columns"/>
+	</constraint>
+	<index name="fki_contrato_general_ordenador" table="contractual.contrato_general"
+		 concurrent="false" unique="false" fast-update="false"
+		 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="ordenador_gasto"/>
+		</idxelement>
+	</index>
+	<index name="fki_funcionario_ordenador" table="contractual.contrato_general"
+		 concurrent="false" unique="false" fast-update="false"
+		 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="ordenador_gasto"/>
+		</idxelement>
+	</index>
+	<index name="fki_parametro_unidad_tiempo_ejecucion_parametros" table="contractual.contrato_general"
+		 concurrent="false" unique="false" fast-update="false"
+		 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="unidad_ejecucion"/>
+		</idxelement>
+	</index>
+	<index name="fki_supervisor_contrato_contrato_general" table="contractual.contrato_general"
+		 concurrent="false" unique="false" fast-update="false"
+		 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="supervisor"/>
+		</idxelement>
+	</index>
+	<index name="fki_tipo_contrato_contrato_generaL" table="contractual.contrato_general"
+		 concurrent="false" unique="false" fast-update="false"
+		 index-type="btree" factor="90">
+		<idxelement use-sorting="false">
+			<column name="tipo_contrato"/>
+		</idxelement>
+	</index>
+</table>
+
+<relationship name="contrato_general_has_one_estado_contrato" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="40" constr-indexes="2,3"
+	 src-table="&quot;contratacionDVE&quot;.estado_contrato"
+	 dst-table="contractual.contrato_general"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="0" y="0"/>
+	</label>
+</relationship>
+
+<relationship name="contrato_general_has_one_cancelacion_contrato" type="rel11"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="41" constr-indexes="4,5"
+	 src-table="&quot;contratacionDVE&quot;.cancelacion_contrato"
+	 dst-table="contractual.contrato_general"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="contrato_general_has_many_valor_contrato" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="2,3" constr-indexes="1"
+	 src-table="contractual.contrato_general"
+	 dst-table="&quot;contratacionDVE&quot;.valor_contrato"
+	 src-required="false" dst-required="false"/>
+
+<relationship name="contrato_general_has_many_contrato_especial" type="rel1n"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 col-indexes="7,8" constr-indexes="3"
+	 src-table="contractual.contrato_general"
+	 dst-table="&quot;contratacionDVE&quot;.contrato_especial"
 	 src-required="false" dst-required="false"/>
 
 </dbmodel>
