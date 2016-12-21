@@ -1,0 +1,114 @@
+{
+	"contratos": [
+		{
+			"nombre": "Suarez Reina Adriana Yamile",
+			"cedula": "52.730.285",
+			"expedida": "Bogotá",
+            "categoria": "Asistente",
+            "dedicacion": "H.C.",
+            "horas": "4",
+            "semanas": "17",
+            "valor": "1.972.911",
+            "disponibilidad": "456"
+		},
+        {
+            "nombre": "Chaparro Acosta Cristian Arturo",
+            "cedula": "1.073.678.907",
+            "expedida": "Soacha",
+            "categoria": "Auxiliar",
+            "dedicacion": "H.C.",
+            "horas": "4",
+            "semanas": "17",
+            "valor": "1.544.017",
+            "disponibilidad": "456"
+        },
+		{
+            "nombre": "Sanchez Avila Nini Johana",
+            "cedula": "63.451.704",
+            "expedida": "Florida Blanca - Santander",
+            "categoria": "Asistente",
+            "dedicacion": "H.C.",
+            "horas": "1",
+            "semanas": "17",
+            "valor": "493.228",
+            "disponibilidad": "456"
+        },
+		{
+            "nombre": "Carvajal OTero Nicolas Johan",
+            "cedula": "78.256.872",
+            "expedida": "Bogotá",
+            "categoria": "Auxiliar",
+            "dedicacion": "H.C.",
+            "horas": "4",
+            "semanas": "17",
+            "valor": "1.490.278",
+            "disponibilidad": "456"
+        },
+		{
+            "nombre": "Castro Garcia Andres",
+            "cedula": "26.789.412",
+            "expedida": "Tunja",
+            "categoria": "Asistente",
+            "dedicacion": "H.C.",
+            "horas": "2",
+            "semanas": "17",
+            "valor": "789.245",
+            "disponibilidad": "456"
+        },
+		{
+            "nombre": "Galvan Rubio Daniel Stiven",
+            "cedula": "47.124.785",
+            "expedida": "Cali",
+            "categoria": "Asistente",
+            "dedicacion": "H.C.",
+            "horas": "2",
+            "semanas": "17",
+            "valor": "686.495",
+            "disponibilidad": "456"
+        },
+		{
+            "nombre": "Gordillo Orjuela Kevin Danilo",
+            "cedula": "95.874.541",
+            "expedida": "Bogotá",
+            "categoria": "Auxiliar",
+            "dedicacion": "H.C.",
+            "horas": "4",
+            "semanas": "17",
+            "valor": "1.386.673",
+            "disponibilidad": "456"
+        },
+		{
+            "nombre": "Roriguez Romero Cristian Camilo",
+            "cedula": "63.249.819",
+            "expedida": "Bogotá",
+            "categoria": "Auxiliar",
+            "dedicacion": "H.C.",
+            "horas": "1",
+            "semanas": "17",
+            "valor": "512.973",
+            "disponibilidad": "456"
+        },
+		{
+            "nombre": "Chacon Becerra Camilo Fabricio",
+            "cedula": "85.124.365",
+            "expedida": "Bogotá",
+            "categoria": "Auxiliar",
+            "dedicacion": "H.C.",
+            "horas": "4",
+            "semanas": "17",
+            "valor": "1.648.127",
+            "disponibilidad": "456"
+        },
+		{
+            "nombre": "Herrera Quintero Juan Camilo",
+            "cedula": "112.784.129",
+            "expedida": "Bogotá",
+            "categoria": "Asistente",
+            "dedicacion": "H.C.",
+            "horas": "1",
+            "semanas": "17",
+            "valor": "478.623",
+            "disponibilidad": "456"
+        }
+	]
+}

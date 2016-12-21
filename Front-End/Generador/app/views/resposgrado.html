@@ -1,0 +1,102 @@
+<br>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="page-header"> RESOLUCIÓN - POSGRADO </h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h4 class="intro-text text-center">Información <strong>Docente</strong></h4>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="row">
+                                <div class="form-group col-lg-4">
+                                    <label>NOMBRE</label>
+                                    <input type="text" class="form-control" ng-model="nombre">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>CÉDULA</label>
+                                    <input type="text" class="form-control" ng-model="cedula">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>EXPEDIDA</label>
+                                    <input type="text" class="form-control" ng-model="expedida">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>CATEGORÍA</label>
+                                    <select class="form-control" ng-model = "categoria">
+                                        <option ng-repeat = "opcion in categorias" value="{{opcion.Id}}">{{opcion.Nombre}}</option>     
+                                    </select>
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>DEDICACIÓN</label>
+                                    <input type="text" class="form-control" ng-model="dedicacion">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>No. HORAS SEMANALES</label>
+                                    <input type="number" class="form-control" ng-model="numhoras">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>No. SEMANAS CONTRATADAS</label>
+                                    <input type="number" class="form-control" ng-model="numsemanas">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>V/R CONTRATO</label>
+                                    <input type="number" class="form-control" ng-model="valor">
+                                </div>
+                                <div class="form-group col-lg-4">
+                                    <label>DISPONIBILIDAD</label>
+                                    <input type="number" class="form-control" ng-model="disponibilidad">
+                                </div>
+                                <div class="col-lg-4">
+                                </div>
+                                <div class="col-lg-4">
+                                    <label></label>
+                                    <input type="submit" class="form-control" onclick="generar()" value="Agregar">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="intro-text text-center">Generaci&oacute;n <strong>Resoluci&oacute;n</strong></h4>
+                        </div>
+                        <div class="panel-body">
+                            <button type="submit" class="form-control" onclick="generar()">Generar resoluci&oacute;n</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+    <div class="row" id="carta">
+
+            </div>
+
+    <script type="text/javascript" src="bower_components/jspdf/js/jquery/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="bower_components/jspdf/js/jquery/jquery-ui-1.8.17.custom.min.js"></script>
+    <script type="text/javascript" src="bower_components/jspdf/jspdf.js"></script>
+    <script type="text/javascript" src="bower_components/jspdf/jspdf.plugin.addimage.js"></script>
+    <script type="text/javascript" src="bower_components/jspdf/jspdf.plugin.standard_fonts_metrics.js"></script>
+    <script type="text/javascript" src="bower_components/jspdf/jspdf.plugin.split_text_to_size.js"></script>
+    <script type="text/javascript" src="bower_components/jspdf/jspdf.plugin.from_html.js"></script>
+    <script type="text/javascript" src="bower_components/jspdf/jspdf.min.js"></script>
+    <script type="text/javascript" src="bower_components/jspdf/jspdf.plugin.autotable.src.js"></script>
+    <script src="scripts/resolucion.js"></script>
+
+    <div class="panel-footer">
+        Universiad Distrital Francisco José de Caldas
+        <br>
+        2016
+    </div>
+
+</div>
